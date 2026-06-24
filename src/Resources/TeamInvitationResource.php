@@ -1,31 +1,25 @@
 <?php
 
-namespace JeffersonGoncalves\Filament\Teams\Resources\TeamInvitations;
+namespace JeffersonGoncalves\Filament\Teams\Resources;
 
-use BackedEnum;
 use Closure;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\ViewAction;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Infolists\Components\TextEntry;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
-use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\Get;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
 use JeffersonGoncalves\Filament\Teams\FilamentTeams;
 use JeffersonGoncalves\Filament\Teams\Models\TeamInvitation;
-use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitations\Pages\ManageTeamInvitations;
+use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitationResource\Pages;
 
 class TeamInvitationResource extends Resource
 {
     protected static ?string $model = TeamInvitation::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::Ticket;
+    protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
     protected static ?string $recordTitleAttribute = 'email';
 
@@ -54,27 +48,27 @@ class TeamInvitationResource extends Resource
         return (string) Cache::rememberForever('team_invitations_count', fn () => FilamentTeams::teamInvitationModel()::query()->count());
     }
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return $schema
+        return $form
             ->columns(1)
-            ->components([
-                Select::make('team_id')
+            ->schema([
+                Forms\Components\Select::make('team_id')
                     ->label(__('filament-teams::teams.fields.team'))
                     ->relationship('team', 'name')
                     ->searchable()
                     ->live(onBlur: true)
                     ->required(),
-                TextInput::make('email')
+                Forms\Components\TextInput::make('email')
                     ->label(__('filament-teams::teams.fields.email'))
                     ->email()
                     ->unique(
                         config('filament-teams.tables.team_invitations', 'team_invitations'),
                         'email',
-                        modifyRuleUsing: fn ($rule, Get $get) => $rule->where('team_id', $get('team_id')),
+                        modifyRuleUsing: fn ($rule, Forms\Get $get) => $rule->where('team_id', $get('team_id')),
                     )
                     ->required()
-                    ->rules([fn (Get $get): Closure => function (string $attribute, mixed $value, Closure $fail) use ($get): void {
+                    ->rules([fn (Forms\Get $get): Closure => function (string $attribute, mixed $value, Closure $fail) use ($get): void {
                         $team = FilamentTeams::teamModel()::find($get('team_id'));
 
                         if (! $team) {
@@ -92,21 +86,20 @@ class TeamInvitationResource extends Resource
             ]);
     }
 
-    public static function infolist(Schema $schema): Schema
+    public static function infolist(Infolist $infolist): Infolist
     {
-        return $schema
-            ->columns(1)
-            ->components([
-                Section::make()
+        return $infolist
+            ->schema([
+                Infolists\Components\Section::make()
                     ->schema([
-                        TextEntry::make('team.name')
+                        Infolists\Components\TextEntry::make('team.name')
                             ->label(__('filament-teams::teams.fields.team')),
-                        TextEntry::make('email')
+                        Infolists\Components\TextEntry::make('email')
                             ->label(__('filament-teams::teams.fields.email')),
-                        TextEntry::make('created_at')
+                        Infolists\Components\TextEntry::make('created_at')
                             ->label(__('filament-teams::teams.fields.created_at'))
                             ->dateTime(),
-                        TextEntry::make('updated_at')
+                        Infolists\Components\TextEntry::make('updated_at')
                             ->label(__('filament-teams::teams.fields.updated_at'))
                             ->dateTime(),
                     ]),
@@ -116,35 +109,34 @@ class TeamInvitationResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('email')
             ->columns([
-                TextColumn::make('team.name')
+                Tables\Columns\TextColumn::make('team.name')
                     ->label(__('filament-teams::teams.fields.team'))
                     ->searchable(),
-                TextColumn::make('email')
+                Tables\Columns\TextColumn::make('email')
                     ->label(__('filament-teams::teams.fields.email'))
                     ->searchable(),
-                TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('created_at')
                     ->label(__('filament-teams::teams.fields.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
+                Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('filament-teams::teams.fields.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->recordActions([
-                ViewAction::make(),
-                DeleteAction::make(),
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => ManageTeamInvitations::route('/'),
+            'index' => Pages\ManageTeamInvitations::route('/'),
         ];
     }
 }

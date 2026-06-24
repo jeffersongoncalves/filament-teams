@@ -3,7 +3,6 @@
 namespace JeffersonGoncalves\Filament\Teams\Models;
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,7 +11,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use JeffersonGoncalves\Filament\Teams\FilamentTeams;
 use JeffersonGoncalves\Filament\Teams\Observers\TeamObserver;
-use JeffersonGoncalves\Filament\Teams\Policies\TeamPolicy;
 
 /**
  * @property int $id
@@ -26,7 +24,6 @@ use JeffersonGoncalves\Filament\Teams\Policies\TeamPolicy;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Model> $users
  */
 #[ObservedBy(TeamObserver::class)]
-#[UsePolicy(TeamPolicy::class)]
 class Team extends Model
 {
     protected $fillable = [

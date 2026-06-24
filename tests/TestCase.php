@@ -2,12 +2,13 @@
 
 namespace JeffersonGoncalves\Filament\Teams\Tests;
 
+use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
+use BladeUI\Icons\BladeIconsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
 use Filament\Infolists\InfolistsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
-use Filament\Schemas\SchemasServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
@@ -18,6 +19,7 @@ use JeffersonGoncalves\Filament\Teams\Tests\Fixtures\TestPanelProvider;
 use JeffersonGoncalves\Filament\Teams\Tests\Fixtures\User;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -32,15 +34,17 @@ abstract class TestCase extends Orchestra
     {
         return [
             LivewireServiceProvider::class,
+            BladeIconsServiceProvider::class,
+            BladeHeroiconsServiceProvider::class,
+            BladeCaptureDirectiveServiceProvider::class,
             SupportServiceProvider::class,
-            SchemasServiceProvider::class,
+            FilamentServiceProvider::class,
             FormsServiceProvider::class,
             TablesServiceProvider::class,
             ActionsServiceProvider::class,
             InfolistsServiceProvider::class,
             NotificationsServiceProvider::class,
             WidgetsServiceProvider::class,
-            FilamentServiceProvider::class,
             FilamentTeamsServiceProvider::class,
             TestPanelProvider::class,
         ];

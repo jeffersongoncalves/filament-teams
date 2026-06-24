@@ -5,8 +5,8 @@ namespace JeffersonGoncalves\Filament\Teams\Pages\Tenancy;
 use Closure;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
 use Filament\Pages\Tenancy\EditTenantProfile;
-use Filament\Schemas\Schema;
 use JeffersonGoncalves\Filament\Teams\Models\Team;
 
 /**
@@ -19,10 +19,10 @@ class EditTeamProfile extends EditTenantProfile
         return __('filament-teams::teams.tenancy.profile.label');
     }
 
-    public function form(Schema $schema): Schema
+    public function form(Form $form): Form
     {
-        return $schema
-            ->components([
+        return $form
+            ->schema([
                 TextInput::make('name')
                     ->label(__('filament-teams::teams.fields.name')),
                 Repeater::make('teamInvitations')

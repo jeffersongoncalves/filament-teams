@@ -9,8 +9,8 @@ use JeffersonGoncalves\Filament\Teams\Http\Middleware\CurrentTenant;
 use JeffersonGoncalves\Filament\Teams\Pages\TeamInvitationAccept;
 use JeffersonGoncalves\Filament\Teams\Pages\Tenancy\EditTeamProfile;
 use JeffersonGoncalves\Filament\Teams\Pages\Tenancy\RegisterTeam;
-use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitations\TeamInvitationResource;
-use JeffersonGoncalves\Filament\Teams\Resources\Teams\TeamResource;
+use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitationResource;
+use JeffersonGoncalves\Filament\Teams\Resources\TeamResource;
 
 class FilamentTeamsPlugin implements Plugin
 {

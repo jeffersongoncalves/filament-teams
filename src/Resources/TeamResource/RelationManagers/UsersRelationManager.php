@@ -1,11 +1,9 @@
 <?php
 
-namespace JeffersonGoncalves\Filament\Teams\Resources\Teams\RelationManagers;
+namespace JeffersonGoncalves\Filament\Teams\Resources\TeamResource\RelationManagers;
 
-use Filament\Actions\AttachAction;
-use Filament\Actions\DetachAction;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use JeffersonGoncalves\Filament\Teams\Models\Team;
@@ -22,20 +20,20 @@ class UsersRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                TextColumn::make('name')
+                Tables\Columns\TextColumn::make('name')
                     ->label(__('filament-teams::teams.fields.name'))
                     ->searchable(),
-                TextColumn::make('email')
+                Tables\Columns\TextColumn::make('email')
                     ->label(__('filament-teams::teams.fields.email'))
                     ->searchable(),
             ])
             ->headerActions([
-                AttachAction::make()
+                Tables\Actions\AttachAction::make()
                     ->recordSelectOptionsQuery(fn (Builder $query) => $query->where('users.id', '!=', $this->ownerRecord->user_id))
                     ->preloadRecordSelect(),
             ])
-            ->recordActions([
-                DetachAction::make(),
+            ->actions([
+                Tables\Actions\DetachAction::make(),
             ]);
     }
 }

@@ -2,11 +2,10 @@
 
 namespace JeffersonGoncalves\Filament\Teams\Pages;
 
-use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -21,7 +20,9 @@ class TeamInvitationAccept extends Page implements HasTable
 
     protected static bool $shouldRegisterNavigation = false;
 
-    protected string $view = 'filament-teams::pages.team-invitation-accept';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static string $view = 'filament-teams::pages.team-invitation-accept';
 
     public static function getNavigationLabel(): string
     {
@@ -59,13 +60,13 @@ class TeamInvitationAccept extends Page implements HasTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->recordActions([
+            ->actions([
                 Action::make('accept')
                     ->label(__('filament-teams::teams.invitations.accept.label'))
-                    ->icon(Heroicon::Check)
+                    ->icon('heroicon-o-check')
                     ->iconButton()
                     ->requiresConfirmation()
-                    ->modalIcon(Heroicon::Check)
+                    ->modalIcon('heroicon-o-check')
                     ->modalHeading(__('filament-teams::teams.invitations.accept.heading'))
                     ->action(function (TeamInvitation $record): void {
                         $user = auth(FilamentTeams::guard())->user();
@@ -81,15 +82,17 @@ class TeamInvitationAccept extends Page implements HasTable
                             ->success()
                             ->send();
 
-                        redirect(Filament::getCurrentOrDefaultPanel()->getUrl($record->team));
+                        $panel = Filament::getCurrentPanel();
+
+                        redirect($panel ? $panel->getUrl($record->team) : Filament::getUrl());
                     }),
                 Action::make('cancel')
                     ->label(__('filament-teams::teams.invitations.cancel.label'))
                     ->color('danger')
-                    ->icon(Heroicon::XMark)
+                    ->icon('heroicon-o-x-mark')
                     ->iconButton()
                     ->requiresConfirmation()
-                    ->modalIcon(Heroicon::XMark)
+                    ->modalIcon('heroicon-o-x-mark')
                     ->modalHeading(__('filament-teams::teams.invitations.cancel.heading'))
                     ->action(function (TeamInvitation $record): void {
                         $record->delete();

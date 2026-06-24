@@ -1,10 +1,10 @@
 <?php
 
-namespace JeffersonGoncalves\Filament\Teams\Resources\Teams\Pages;
+namespace JeffersonGoncalves\Filament\Teams\Resources\TeamResource\Pages;
 
-use Filament\Actions\CreateAction;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use JeffersonGoncalves\Filament\Teams\Resources\Teams\TeamResource;
+use JeffersonGoncalves\Filament\Teams\Resources\TeamResource;
 
 class ListTeams extends ListRecords
 {
@@ -13,7 +13,7 @@ class ListTeams extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            Actions\CreateAction::make(),
         ];
     }
 }

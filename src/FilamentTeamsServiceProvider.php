@@ -2,6 +2,8 @@
 
 namespace JeffersonGoncalves\Filament\Teams;
 
+use Illuminate\Support\Facades\Gate;
+use JeffersonGoncalves\Filament\Teams\Policies\TeamPolicy;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -22,5 +24,10 @@ class FilamentTeamsServiceProvider extends PackageServiceProvider
                 'create_team_invitations_table',
                 'add_current_team_id_to_users_table',
             ]);
+    }
+
+    public function packageBooted(): void
+    {
+        Gate::policy(FilamentTeams::teamModel(), TeamPolicy::class);
     }
 }

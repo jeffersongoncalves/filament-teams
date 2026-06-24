@@ -1,10 +1,10 @@
 <?php
 
-namespace JeffersonGoncalves\Filament\Teams\Resources\TeamInvitations\Pages;
+namespace JeffersonGoncalves\Filament\Teams\Resources\TeamInvitationResource\Pages;
 
-use Filament\Actions\CreateAction;
+use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
-use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitations\TeamInvitationResource;
+use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitationResource;
 
 class ManageTeamInvitations extends ManageRecords
 {
@@ -13,7 +13,7 @@ class ManageTeamInvitations extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            Actions\CreateAction::make(),
         ];
     }
 }

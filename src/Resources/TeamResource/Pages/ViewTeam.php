@@ -1,10 +1,10 @@
 <?php
 
-namespace JeffersonGoncalves\Filament\Teams\Resources\Teams\Pages;
+namespace JeffersonGoncalves\Filament\Teams\Resources\TeamResource\Pages;
 
-use Filament\Actions\EditAction;
+use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
-use JeffersonGoncalves\Filament\Teams\Resources\Teams\TeamResource;
+use JeffersonGoncalves\Filament\Teams\Resources\TeamResource;
 
 class ViewTeam extends ViewRecord
 {
@@ -13,7 +13,7 @@ class ViewTeam extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            EditAction::make(),
+            Actions\EditAction::make(),
         ];
     }
 }
