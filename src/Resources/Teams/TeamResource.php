@@ -8,8 +8,6 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
-use JeffersonGoncalves\Filament\Teams\FilamentTeams;
-use JeffersonGoncalves\Filament\Teams\Models\Team;
 use JeffersonGoncalves\Filament\Teams\Resources\Teams\Pages\CreateTeam;
 use JeffersonGoncalves\Filament\Teams\Resources\Teams\Pages\EditTeam;
 use JeffersonGoncalves\Filament\Teams\Resources\Teams\Pages\ListTeams;
@@ -18,6 +16,8 @@ use JeffersonGoncalves\Filament\Teams\Resources\Teams\RelationManagers\UsersRela
 use JeffersonGoncalves\Filament\Teams\Resources\Teams\Schemas\TeamForm;
 use JeffersonGoncalves\Filament\Teams\Resources\Teams\Schemas\TeamInfolist;
 use JeffersonGoncalves\Filament\Teams\Resources\Teams\Tables\TeamsTable;
+use JeffersonGoncalves\Teams\Models\Team;
+use JeffersonGoncalves\Teams\Teams;
 
 class TeamResource extends Resource
 {
@@ -49,7 +49,7 @@ class TeamResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('teams_count', fn () => FilamentTeams::teamModel()::query()->count());
+        return (string) Cache::rememberForever('teams_count', fn () => Teams::teamModel()::query()->count());
     }
 
     public static function form(Schema $schema): Schema

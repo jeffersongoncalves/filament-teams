@@ -12,7 +12,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/jeffersongoncalves/filament-teams.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/filament-teams)
 [![License](https://img.shields.io/packagist/l/jeffersongoncalves/filament-teams.svg?style=flat-square)](LICENSE.md)
 
-A Filament plugin that adds multi-tenancy with Teams, memberships, and team invitations to your panels. It ships everything you need to turn a single-tenant Filament panel into a team-based, multi-tenant application: a `HasTeams` trait for your `User` model, tenant registration and profile pages, an invitation acceptance flow, and optional admin resources to manage Teams and Team Invitations.
+A Filament plugin that adds multi-tenancy with Teams, memberships, and team invitations to your panels. It builds on the framework-agnostic [`jeffersongoncalves/laravel-teams`](https://github.com/jeffersongoncalves/laravel-teams) core (models, migrations, policy and the `HasTeams` trait) and adds the Filament layer on top: a `HasTeamsFilament` trait for your `User` model, tenant registration and profile pages, an invitation acceptance flow, and optional admin resources to manage Teams and Team Invitations.
 
 ## Features
 
@@ -20,9 +20,9 @@ A Filament plugin that adds multi-tenancy with Teams, memberships, and team invi
 - 👥 Team memberships through a pivot model
 - ✉️ Team invitations with accept / cancel flow
 - 🪪 Personal team automatically created for every new user
-- 🧩 `HasTeams` trait wiring all tenancy contracts
+- 🧩 `HasTeamsFilament` trait wiring all Filament tenancy contracts
 - 🛠️ Optional admin resources for Teams and Team Invitations
-- ⚙️ Publishable configuration and migrations (models, tables and guard are configurable)
+- ⚙️ Configuration and migrations provided by `jeffersongoncalves/laravel-teams` (models, tables and guard are configurable)
 
 ## Compatibility
 
@@ -34,7 +34,7 @@ A Filament plugin that adds multi-tenancy with Teams, memberships, and team invi
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via composer (the `jeffersongoncalves/laravel-teams` core is pulled in automatically):
 
 ```bash
 composer require jeffersongoncalves/filament-teams:"^2.0"
@@ -43,32 +43,32 @@ composer require jeffersongoncalves/filament-teams:"^2.0"
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="filament-teams-migrations"
+php artisan vendor:publish --tag="teams-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="filament-teams-config"
+php artisan vendor:publish --tag="teams-config"
 ```
 
 ## Usage
 
 ### 1. Prepare your User model
 
-Add the `HasTeams` trait and implement the Filament tenancy contracts on your `User` model. Your `users` table needs a `current_team_id` column (provided by the published migration).
+Add the `HasTeamsFilament` trait and implement the Filament tenancy contracts on your `User` model. Your `users` table needs a `current_team_id` column (provided by the published migration).
 
 ```php
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasDefaultTenant;
 use Filament\Models\Contracts\HasTenants;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use JeffersonGoncalves\Filament\Teams\Concerns\HasTeams;
+use JeffersonGoncalves\Filament\Teams\Concerns\HasTeamsFilament;
 
 class User extends Authenticatable implements FilamentUser, HasDefaultTenant, HasTenants
 {
-    use HasTeams;
+    use HasTeamsFilament;
 }
 ```
 
@@ -100,9 +100,9 @@ return [
     'user_model' => 'App\\Models\\User',
     'personal_teams' => true,
     'models' => [
-        'team' => \JeffersonGoncalves\Filament\Teams\Models\Team::class,
-        'team_invitation' => \JeffersonGoncalves\Filament\Teams\Models\TeamInvitation::class,
-        'membership' => \JeffersonGoncalves\Filament\Teams\Models\Membership::class,
+        'team' => \JeffersonGoncalves\Teams\Models\Team::class,
+        'team_invitation' => \JeffersonGoncalves\Teams\Models\TeamInvitation::class,
+        'membership' => \JeffersonGoncalves\Teams\Models\Membership::class,
     ],
     'tables' => [
         'teams' => 'teams',
