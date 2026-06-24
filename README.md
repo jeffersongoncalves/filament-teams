@@ -1,14 +1,14 @@
 <div class="filament-hidden">
 
-![Filament Teams](https://raw.githubusercontent.com/jeffersongoncalves/filament-teams/3.x/art/jeffersongoncalves-filament-teams.png)
+![Filament Teams](https://raw.githubusercontent.com/jeffersongoncalves/filament-teams/2.x/art/jeffersongoncalves-filament-teams.png)
 
 </div>
 
 # Filament Teams
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jeffersongoncalves/filament-teams.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/filament-teams)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/filament-teams/tests.yml?branch=3.x&label=tests&style=flat-square)](https://github.com/jeffersongoncalves/filament-teams/actions?query=workflow%3Atests+branch%3A3.x)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/filament-teams/fix-php-code-style-issues.yml?branch=3.x&label=code%20style&style=flat-square)](https://github.com/jeffersongoncalves/filament-teams/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3A3.x)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/filament-teams/tests.yml?branch=2.x&label=tests&style=flat-square)](https://github.com/jeffersongoncalves/filament-teams/actions?query=workflow%3Atests+branch%3A2.x)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/filament-teams/fix-php-code-style-issues.yml?branch=2.x&label=code%20style&style=flat-square)](https://github.com/jeffersongoncalves/filament-teams/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3A2.x)
 [![Total Downloads](https://img.shields.io/packagist/dt/jeffersongoncalves/filament-teams.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/filament-teams)
 [![License](https://img.shields.io/packagist/l/jeffersongoncalves/filament-teams.svg?style=flat-square)](LICENSE.md)
 
@@ -37,7 +37,7 @@ A Filament plugin that adds multi-tenancy with Teams, memberships, and team invi
 You can install the package via composer:
 
 ```bash
-composer require jeffersongoncalves/filament-teams:"^3.0"
+composer require jeffersongoncalves/filament-teams:"^2.0"
 ```
 
 You can publish and run the migrations with:
