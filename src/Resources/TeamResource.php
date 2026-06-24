@@ -10,10 +10,10 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
-use JeffersonGoncalves\Filament\Teams\FilamentTeams;
-use JeffersonGoncalves\Filament\Teams\Models\Team;
 use JeffersonGoncalves\Filament\Teams\Resources\TeamResource\Pages;
 use JeffersonGoncalves\Filament\Teams\Resources\TeamResource\RelationManagers;
+use JeffersonGoncalves\Teams\Models\Team;
+use JeffersonGoncalves\Teams\Teams;
 
 class TeamResource extends Resource
 {
@@ -45,7 +45,7 @@ class TeamResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('teams_count', fn () => FilamentTeams::teamModel()::query()->count());
+        return (string) Cache::rememberForever('teams_count', fn () => Teams::teamModel()::query()->count());
     }
 
     public static function form(Form $form): Form

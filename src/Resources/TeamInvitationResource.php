@@ -11,9 +11,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
-use JeffersonGoncalves\Filament\Teams\FilamentTeams;
-use JeffersonGoncalves\Filament\Teams\Models\TeamInvitation;
 use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitationResource\Pages;
+use JeffersonGoncalves\Teams\Models\TeamInvitation;
+use JeffersonGoncalves\Teams\Teams;
 
 class TeamInvitationResource extends Resource
 {
@@ -45,7 +45,7 @@ class TeamInvitationResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('team_invitations_count', fn () => FilamentTeams::teamInvitationModel()::query()->count());
+        return (string) Cache::rememberForever('team_invitations_count', fn () => Teams::teamInvitationModel()::query()->count());
     }
 
     public static function form(Form $form): Form
@@ -63,13 +63,13 @@ class TeamInvitationResource extends Resource
                     ->label(__('filament-teams::teams.fields.email'))
                     ->email()
                     ->unique(
-                        config('filament-teams.tables.team_invitations', 'team_invitations'),
+                        config('teams.tables.team_invitations', 'team_invitations'),
                         'email',
                         modifyRuleUsing: fn ($rule, Forms\Get $get) => $rule->where('team_id', $get('team_id')),
                     )
                     ->required()
                     ->rules([fn (Forms\Get $get): Closure => function (string $attribute, mixed $value, Closure $fail) use ($get): void {
-                        $team = FilamentTeams::teamModel()::find($get('team_id'));
+                        $team = Teams::teamModel()::find($get('team_id'));
 
                         if (! $team) {
                             return;

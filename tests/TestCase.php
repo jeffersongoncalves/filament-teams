@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Schema;
 use JeffersonGoncalves\Filament\Teams\FilamentTeamsServiceProvider;
 use JeffersonGoncalves\Filament\Teams\Tests\Fixtures\TestPanelProvider;
 use JeffersonGoncalves\Filament\Teams\Tests\Fixtures\User;
+use JeffersonGoncalves\Teams\TeamsServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
@@ -45,6 +46,7 @@ abstract class TestCase extends Orchestra
             InfolistsServiceProvider::class,
             NotificationsServiceProvider::class,
             WidgetsServiceProvider::class,
+            TeamsServiceProvider::class,
             FilamentTeamsServiceProvider::class,
             TestPanelProvider::class,
         ];
@@ -61,7 +63,7 @@ abstract class TestCase extends Orchestra
 
         config()->set('app.key', 'base64:'.base64_encode(random_bytes(32)));
         config()->set('auth.providers.users.model', User::class);
-        config()->set('filament-teams.user_model', User::class);
+        config()->set('teams.user_model', User::class);
     }
 
     protected function setUpDatabase(): void

@@ -11,8 +11,8 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
-use JeffersonGoncalves\Filament\Teams\FilamentTeams;
-use JeffersonGoncalves\Filament\Teams\Models\TeamInvitation;
+use JeffersonGoncalves\Teams\Models\TeamInvitation;
+use JeffersonGoncalves\Teams\Teams;
 
 class TeamInvitationAccept extends Page implements HasTable
 {
@@ -36,13 +36,13 @@ class TeamInvitationAccept extends Page implements HasTable
 
     public function table(Table $table): Table
     {
-        $user = auth(FilamentTeams::guard())->user();
+        $user = auth(Teams::guard())->user();
         $email = $user instanceof Model ? $user->getAttribute('email') : null;
 
         return $table
             ->recordTitleAttribute('email')
             ->query(
-                FilamentTeams::teamInvitationModel()::query()
+                Teams::teamInvitationModel()::query()
                     ->where('email', $email)
             )
             ->columns([
@@ -69,7 +69,7 @@ class TeamInvitationAccept extends Page implements HasTable
                     ->modalIcon('heroicon-o-check')
                     ->modalHeading(__('filament-teams::teams.invitations.accept.heading'))
                     ->action(function (TeamInvitation $record): void {
-                        $user = auth(FilamentTeams::guard())->user();
+                        $user = auth(Teams::guard())->user();
 
                         if (! $user) {
                             return;

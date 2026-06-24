@@ -6,7 +6,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use JeffersonGoncalves\Filament\Teams\Models\Team;
+use JeffersonGoncalves\Teams\Models\Team;
 
 /**
  * @property Team $ownerRecord
