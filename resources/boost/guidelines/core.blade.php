@@ -1,6 +1,6 @@
 ## Filament Teams
 
-This Filament plugin adds multi-tenancy with Teams, memberships and team invitations to your panels.
+This Filament plugin adds multi-tenancy with Teams, memberships and team invitations to your panels. It builds on the framework-agnostic `jeffersongoncalves/laravel-teams` core (models, migrations, policy, `HasTeams` trait).
 
 ### Installation
 
@@ -13,15 +13,15 @@ composer require jeffersongoncalves/filament-teams
 ### Prepare the User model
 
 @verbatim
-<code-snippet name="Add the HasTeams trait" lang="php">
+<code-snippet name="Add the HasTeamsFilament trait" lang="php">
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasDefaultTenant;
 use Filament\Models\Contracts\HasTenants;
-use JeffersonGoncalves\Filament\Teams\Concerns\HasTeams;
+use JeffersonGoncalves\Filament\Teams\Concerns\HasTeamsFilament;
 
 class User extends Authenticatable implements FilamentUser, HasDefaultTenant, HasTenants
 {
-    use HasTeams;
+    use HasTeamsFilament;
 }
 </code-snippet>
 @endverbatim
@@ -45,7 +45,7 @@ public function panel(Panel $panel): Panel
 
 ### Available components
 
-- **HasTeams trait**: adds `ownedTeams`, `teams`, `currentTeam`, `switchTeam`, `belongsToTeam`, `ownsTeam`, `personalTeam` and the Filament tenancy contract methods to the User model.
+- **HasTeamsFilament trait**: builds on the core `HasTeams` trait (`ownedTeams`, `teams`, `currentTeam`, `switchTeam`, `belongsToTeam`, `ownsTeam`, `personalTeam`) and adds the Filament tenancy contract methods (`getTenants`, `getDefaultTenant`, `canAccessTenant`) to the User model.
 - **RegisterTeam / EditTeamProfile**: tenant registration and tenant profile pages.
 - **TeamInvitationAccept**: page where users accept or decline invitations.
 - **TeamResource / TeamInvitationResource**: optional admin resources.
