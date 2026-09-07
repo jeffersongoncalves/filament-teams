@@ -2,6 +2,15 @@
 
 All notable changes to `filament-teams` will be documented in this file.
 
+## 2.0.1 - 2026-09-06
+
+### What's Changed
+
+* docs: add Buy Me a Coffee sponsor link by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-teams/pull/6
+* chore: add Buy Me a Coffee to FUNDING.yml by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-teams/pull/9
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-teams/compare/2.0.0...2.0.1
+
 ## 2.0.0 - 2026-06-23
 
 ### Added
