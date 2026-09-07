@@ -7,11 +7,11 @@ use Filament\Models\Contracts\HasDefaultTenant;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use JeffersonGoncalves\Filament\Teams\Concerns\HasTeamsFilament;
+use JeffersonGoncalves\Filament\Teams\Concerns\HasTeams;
 
 class User extends Authenticatable implements FilamentUser, HasDefaultTenant, HasTenants
 {
-    use HasTeamsFilament;
+    use HasTeams;
 
     protected $table = 'users';
 

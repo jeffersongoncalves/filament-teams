@@ -11,7 +11,6 @@ use JeffersonGoncalves\Filament\Teams\Pages\Tenancy\EditTeamProfile;
 use JeffersonGoncalves\Filament\Teams\Pages\Tenancy\RegisterTeam;
 use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitations\TeamInvitationResource;
 use JeffersonGoncalves\Filament\Teams\Resources\Teams\TeamResource;
-use JeffersonGoncalves\Teams\Teams;
 
 class FilamentTeamsPlugin implements Plugin
 {
@@ -47,7 +46,7 @@ class FilamentTeamsPlugin implements Plugin
 
         if ($this->hasTenancy) {
             $panel
-                ->tenant(Teams::teamModel())
+                ->tenant(FilamentTeams::teamModel())
                 ->tenantRegistration(RegisterTeam::class)
                 ->tenantProfile(EditTeamProfile::class)
                 ->tenantMiddleware([
