@@ -2,6 +2,22 @@
 
 All notable changes to `filament-teams` will be documented in this file.
 
+## 3.0.1 - 2026-09-06
+
+### What's Changed
+
+* build(deps): Bump ramsey/composer-install from 3 to 4 by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-teams/pull/3
+* build(deps): Bump actions/checkout from 4 to 7 by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-teams/pull/2
+* build(deps): Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-teams/pull/1
+* docs: add Buy Me a Coffee sponsor link by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-teams/pull/4
+* chore: add GitHub Sponsors to FUNDING.yml by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-teams/pull/7
+
+### New Contributors
+
+* @dependabot[bot] made their first contribution in https://github.com/jeffersongoncalves/filament-teams/pull/3
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-teams/compare/3.0.0...3.0.1
+
 ## 3.0.0 - 2026-06-23
 
 ### Added
