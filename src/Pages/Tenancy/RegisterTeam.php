@@ -6,7 +6,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Pages\Tenancy\RegisterTenant;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Model;
-use JeffersonGoncalves\Teams\Teams;
+use JeffersonGoncalves\Filament\Teams\FilamentTeams;
 
 class RegisterTeam extends RegisterTenant
 {
@@ -27,9 +27,9 @@ class RegisterTeam extends RegisterTenant
 
     protected function handleRegistration(array $data): Model
     {
-        return Teams::teamModel()::create([
+        return FilamentTeams::teamModel()::create([
             'name' => $data['name'],
-            'user_id' => auth(Teams::guard())->id(),
+            'user_id' => auth(FilamentTeams::guard())->id(),
             'personal_team' => false,
         ]);
     }
