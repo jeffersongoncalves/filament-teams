@@ -31,7 +31,7 @@ A Filament plugin that adds multi-tenancy with Teams, memberships, and team invi
 | Plugin Version                                                   | Filament | PHP   | Laravel    |
 |-----------------------------------------------------------------|----------|-------|------------|
 | [1.x](https://github.com/jeffersongoncalves/filament-teams/tree/1.x) | ^3.0     | ^8.1  | ^10.0      |
-| [2.x](https://github.com/jeffersongoncalves/filament-teams/tree/2.x) | ^4.0     | ^8.2  | ^11.0      |
+| [2.x](https://github.com/jeffersongoncalves/filament-teams/tree/2.x) | ^4.0     | ^8.2  | ^12.0/^13.0 |
 | [3.x](https://github.com/jeffersongoncalves/filament-teams/tree/3.x) | ^5.0     | ^8.3  | ^12.0/^13.0 |
 
 ## Installation
