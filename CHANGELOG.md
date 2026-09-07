@@ -2,6 +2,10 @@
 
 All notable changes to `filament-teams` will be documented in this file.
 
+## 2.1.0 - 2026-09-06
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-teams/compare/2.0.2...2.1.0
+
 ## 2.0.2 - 2026-09-06
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filament-teams/compare/2.0.1...2.0.2
