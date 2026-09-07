@@ -48,6 +48,7 @@ class EditTeamProfile extends EditTenantProfile
                             ->email()
                             ->required(),
                     )
+                    ->partiallyRenderAfterActionsCalled(false)
                     ->mutateRelationshipDataBeforeSaveUsing(function (array $data): array {
                         $data['team_id'] = $this->tenant->id;
 
