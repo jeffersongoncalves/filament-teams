@@ -7,7 +7,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\Tenancy\EditTenantProfile;
 use Filament\Schemas\Schema;
-use JeffersonGoncalves\Filament\Teams\Models\Team;
+use JeffersonGoncalves\Teams\Models\Team;
 
 /**
  * @property Team $tenant
@@ -32,7 +32,7 @@ class EditTeamProfile extends EditTenantProfile
                         TextInput::make('email')
                             ->label(__('filament-teams::teams.fields.email'))
                             ->unique(
-                                config('filament-teams.tables.team_invitations', 'team_invitations'),
+                                config('teams.tables.team_invitations', 'team_invitations'),
                                 'email',
                                 modifyRuleUsing: fn ($rule) => $rule->where('team_id', $this->tenant->id),
                             )

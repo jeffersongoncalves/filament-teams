@@ -6,7 +6,7 @@ use Closure;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use JeffersonGoncalves\Filament\Teams\FilamentTeams;
+use JeffersonGoncalves\Teams\Teams;
 use Symfony\Component\HttpFoundation\Response;
 
 class CurrentTenant
@@ -18,7 +18,7 @@ class CurrentTenant
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = auth(FilamentTeams::guard())->user();
+        $user = auth(Teams::guard())->user();
         $tenant = Filament::getTenant();
 
         if ($user instanceof Model && $tenant instanceof Model && $tenant->getKey()) {

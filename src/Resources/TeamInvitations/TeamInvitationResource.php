@@ -17,9 +17,9 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
-use JeffersonGoncalves\Filament\Teams\FilamentTeams;
-use JeffersonGoncalves\Filament\Teams\Models\TeamInvitation;
 use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitations\Pages\ManageTeamInvitations;
+use JeffersonGoncalves\Teams\Models\TeamInvitation;
+use JeffersonGoncalves\Teams\Teams;
 
 class TeamInvitationResource extends Resource
 {
@@ -51,7 +51,7 @@ class TeamInvitationResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('team_invitations_count', fn () => FilamentTeams::teamInvitationModel()::query()->count());
+        return (string) Cache::rememberForever('team_invitations_count', fn () => Teams::teamInvitationModel()::query()->count());
     }
 
     public static function form(Schema $schema): Schema
@@ -69,13 +69,13 @@ class TeamInvitationResource extends Resource
                     ->label(__('filament-teams::teams.fields.email'))
                     ->email()
                     ->unique(
-                        config('filament-teams.tables.team_invitations', 'team_invitations'),
+                        config('teams.tables.team_invitations', 'team_invitations'),
                         'email',
                         modifyRuleUsing: fn ($rule, Get $get) => $rule->where('team_id', $get('team_id')),
                     )
                     ->required()
                     ->rules([fn (Get $get): Closure => function (string $attribute, mixed $value, Closure $fail) use ($get): void {
-                        $team = FilamentTeams::teamModel()::find($get('team_id'));
+                        $team = Teams::teamModel()::find($get('team_id'));
 
                         if (! $team) {
                             return;

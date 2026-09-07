@@ -2,10 +2,10 @@
 
 use Filament\Facades\Filament;
 use JeffersonGoncalves\Filament\Teams\FilamentTeamsPlugin;
-use JeffersonGoncalves\Filament\Teams\Models\Team;
 use JeffersonGoncalves\Filament\Teams\Pages\TeamInvitationAccept;
 use JeffersonGoncalves\Filament\Teams\Resources\TeamInvitations\TeamInvitationResource;
 use JeffersonGoncalves\Filament\Teams\Resources\Teams\TeamResource;
+use JeffersonGoncalves\Teams\Models\Team;
 
 it('has the expected plugin id', function () {
     expect(FilamentTeamsPlugin::make()->getId())->toBe('filament-teams');
